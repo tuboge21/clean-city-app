@@ -1,15 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Selamat Datang di CleanCity</h2>
-<p>Laporkan titik sampah liar, lihat jadwal pengangkutan, pantau petugas kebersihan.</p>
-<h3>Laporan Terbaru</h3>
-<ul>
-    {% for r in reports %}
-    <li><strong>{{ r.location }}</strong>: {{ r.description }}
-        {% if r.photo_url %}<img src="{{ r.photo_url }}" width="80">{% endif %}
-        <br><small>{{ r.created_at }}</small>
-    </li>
-    {% endfor %}
-</ul>
-{% endblock %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1 class="display-5 fw-bold text-success">Selamat Datang di CleanCity</h1>
+        <p class="lead">Laporkan titik sampah liar, lihat jadwal pengangkutan, dan pantau petugas kebersihan.</p>
+        <hr class="my-4">
+        <a href="/report" class="btn btn-success btn-lg"><i class="fas fa-camera"></i> Laporkan Sampah Sekarang</a>
+    </div>
+</div>
 
+<h2 class="mt-5 mb-4 text-success"><i class="fas fa-list"></i> Laporan Terbaru</h2>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for r in reports %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            {% if r.photo_url %}
+            <img src="{{ r.photo_url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Foto laporan">
+            {% else %}
+            <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                <i class="fas fa-image fa-3x text-white"></i>
+            </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-map-marker-alt text-danger"></i> {{ r.location }}</h5>
+                <p class="card-text">{{ r.description }}</p>
+                <small class="text-muted"><i class="far fa-calendar-alt"></i> {{ r.created_at.strftime('%d-%m-%Y %H:%M') }}</small>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-info text-center">Belum ada laporan. Jadilah yang pertama!</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

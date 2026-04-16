@@ -1,14 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Lapor Titik Sampah Liar</h2>
-<form method="post" enctype="multipart/form-data">
-    <label>Lokasi (alamat/kelurahan):</label><br>
-    <input type="text" name="location" required><br>
-    <label>Deskripsi:</label><br>
-    <textarea name="description" rows="4" required></textarea><br>
-    <label>Foto (opsional):</label><br>
-    <input type="file" name="photo" accept="image/*"><br><br>
-    <button type="submit">Kirim Laporan</button>
-</form>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0"><i class="fas fa-camera"></i> Form Laporan Titik Sampah Liar</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Lokasi (alamat/kelurahan)</label>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Contoh: Jl. Merdeka No. 10, Kelurahan Meruya" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Deskripsi</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Jelaskan kondisi sampah..." required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="photo" class="form-label">Foto (opsional)</label>
+                        <input class="form-control" type="file" id="photo" name="photo" accept="image/*">
+                        <div class="form-text">Upload foto untuk memperkuat laporan (maksimal 5MB).</div>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100"><i class="fas fa-paper-plane"></i> Kirim Laporan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
-
