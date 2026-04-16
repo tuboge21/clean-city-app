@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Kelola Petugas Kebersihan</h2>
+<form method="post">
+    <input type="text" name="name" placeholder="Nama" required>
+    <input type="text" name="area" placeholder="Wilayah" required>
+    <select name="status">
+        <option>Active</option>
+        <option>Inactive</option>
+    </select>
+    <button type="submit">Tambah</button>
+</form>
+<ul>
+    {% for o in officers %}
+    <li>{{ o.name }} - {{ o.area }} ({{ o.status }})
+        <a href="/admin/officers/delete/{{ o.id }}" onclick="return confirm('Hapus?')">Hapus</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="/admin">Kembali</a>
+{% endblock %}

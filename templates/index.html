@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Selamat Datang di CleanCity</h2>
+<p>Laporkan titik sampah liar, lihat jadwal pengangkutan, pantau petugas kebersihan.</p>
+<h3>Laporan Terbaru</h3>
+<ul>
+    {% for r in reports %}
+    <li><strong>{{ r.location }}</strong>: {{ r.description }}
+        {% if r.photo_url %}<img src="{{ r.photo_url }}" width="80">{% endif %}
+        <br><small>{{ r.created_at }}</small>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

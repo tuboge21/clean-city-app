@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Jadwal Pengangkutan Sampah</h2>
+<table border="1">
+    <tr><th>Hari</th><th>Lokasi</th><th>Waktu</th></tr>
+    {% for s in schedules %}
+    <tr><td>{{ s.day }}</td><td>{{ s.location }}</td><td>{{ s.time }}</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
+

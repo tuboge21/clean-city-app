@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard Admin</h2>
+<h3>Laporan Warga ({{ reports|length }})</h3>
+<ul>
+    {% for r in reports %}
+    <li>{{ r.location }} - {{ r.description }}
+        {% if r.photo_url %}<img src="{{ r.photo_url }}" width="50">{% endif %}
+        ({{ r.created_at }})</li>
+    {% endfor %}
+</ul>
+<h3><a href="/admin/schedules">Kelola Jadwal</a></h3>
+<h3><a href="/admin/officers">Kelola Petugas</a></h3>
+{% endblock %}

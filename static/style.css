@@ -1,8 +1,8 @@
-body { font-family: Arial; margin: 0; padding: 0; background: #f4f4f4; }
-nav { background: #2c3e50; padding: 10px; }
-nav a { color: white; margin-right: 15px; text-decoration: none; }
-main { padding: 20px; max-width: 800px; margin: auto; background: white; }
-button { background: #27ae60; color: white; border: none; padding: 8px 16px; cursor: pointer; }
-input, textarea, select { width: 100%; padding: 8px; margin: 5px 0; }
-table { width: 100%; border-collapse: collapse; }
-td, th { border: 1px solid #ddd; padding: 8px; }
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4; }
+nav { background:#2c3e50; padding:10px; }
+nav a { color:white; margin-right:15px; text-decoration:none; }
+main { padding:20px; max-width:800px; margin:auto; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+button, input[type=submit] { background:#27ae60; color:white; border:none; padding:8px 16px; cursor:pointer; }
+input, textarea, select { width:100%; padding:8px; margin:5px 0; border:1px solid #ddd; }
+table { width:100%; border-collapse:collapse; }
+td, th { border:1px solid #ddd; padding:8px; text-align:left; }

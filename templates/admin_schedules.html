@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Kelola Jadwal Pengangkutan</h2>
+<form method="post">
+    <input type="text" name="day" placeholder="Hari" required>
+    <input type="text" name="location" placeholder="Lokasi" required>
+    <input type="text" name="time" placeholder="Waktu (08:00-10:00)" required>
+    <button type="submit">Tambah</button>
+</form>
+<ul>
+    {% for s in schedules %}
+    <li>{{ s.day }} - {{ s.location }} ({{ s.time }})
+        <a href="/admin/schedules/delete/{{ s.id }}" onclick="return confirm('Hapus?')">Hapus</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="/admin">Kembali</a>
+{% endblock %}

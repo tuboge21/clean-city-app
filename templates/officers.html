@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Petugas Kebersihan</h2>
+<ul>
+    {% for o in officers %}
+    <li><strong>{{ o.name }}</strong> - Wilayah: {{ o.area }} ({{ o.status }})</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

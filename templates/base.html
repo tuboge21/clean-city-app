@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CleanCity - Manajemen Persampahan</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <nav>
+        <a href="/">🏠 Beranda</a>
+        <a href="/report">📸 Lapor Sampah</a>
+        <a href="/schedule">📅 Jadwal Angkut</a>
+        <a href="/officers">👮 Petugas</a>
+        {% if session.admin %}<a href="/admin">🔧 Admin</a>{% endif %}
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
