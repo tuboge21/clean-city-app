@@ -11,7 +11,6 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-change-me')
 
-# Database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -20,8 +19,9 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
-# Models
+# Models with __tablename__
 class Report(db.Model):
+    __tablename__ = 'report'
     id: Mapped[int] = mapped_column(primary_key=True)
     location: Mapped[str] = mapped_column(nullable=False)
     description: Mapped[str] = mapped_column(nullable=False)
@@ -29,12 +29,14 @@ class Report(db.Model):
     created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
 
 class Schedule(db.Model):
+    __tablename__ = 'schedule'
     id: Mapped[int] = mapped_column(primary_key=True)
     day: Mapped[str] = mapped_column(nullable=False)
     location: Mapped[str] = mapped_column(nullable=False)
     time: Mapped[str] = mapped_column(nullable=False)
 
 class Officer(db.Model):
+    __tablename__ = 'officer'
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(nullable=False)
     area: Mapped[str] = mapped_column(nullable=False)
@@ -64,7 +66,6 @@ def upload_file_to_s3(file, bucket, folder='reports'):
     except NoCredentialsError:
         return None
 
-# Routes publik
 @app.route('/')
 def index():
     reports = Report.query.order_by(Report.created_at.desc()).limit(10).all()
@@ -93,7 +94,6 @@ def officers():
     officers_list = Officer.query.all()
     return render_template('officers.html', officers=officers_list)
 
-# Admin routes
 ADMIN_USER = os.environ.get('ADMIN_USER', 'admin')
 ADMIN_PASS = os.environ.get('ADMIN_PASS', 'admin123')
 
@@ -169,7 +169,6 @@ def delete_officer(id):
     db.session.commit()
     return redirect(url_for('admin_officers'))
 
-# Create tables dan sample data
 with app.app_context():
     db.create_all()
     if Schedule.query.count() == 0:
